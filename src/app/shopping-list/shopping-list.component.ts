@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ShoppingListAddComponent } from './shopping-list-add.component';
-import { Ingridient } from "../shared/ingridient";
+import { Ingredient } from "../shared/ingredient";
 import { ShoppingListService } from "./shopping-list.service";
 
 @Component({
@@ -12,7 +12,8 @@ import { ShoppingListService } from "./shopping-list.service";
 })
 export class ShoppingListComponent implements OnInit {
 
-  items: Ingridient[] = [];
+  items: Ingredient[] = [];
+  selectedItem: Ingredient = null;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
@@ -20,4 +21,11 @@ export class ShoppingListComponent implements OnInit {
     this.items = this.shoppingListService.getItems();
   }
 
+  onSelectItem(item: Ingredient) {
+    this.selectedItem = item;
+  }
+
+  onCleared() {
+    this.selectedItem = null;
+  }
 }
